@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.*;
 
-import org.codehaus.jackson.JsonNode;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import nu.xom.Document;
 import nu.xom.Serializer;
 

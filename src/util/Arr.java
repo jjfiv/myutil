@@ -13,7 +13,7 @@ import java.lang.reflect.Array;
 import java.text.NumberFormat;
 import java.util.*;
 
-
+@SuppressWarnings("unused")
 /**
  * The array utility class to end all array utility classes.
  * Includes data manipulation, math, and I/O functions
@@ -972,7 +972,7 @@ public class Arr {
 		boolean gettingSize1 = true;
 		boolean gettingSize2 = false;
 		int size1 = 0;
-		List<Integer> ints = new ArrayList<Integer>();
+		List<Integer> ints = new ArrayList<>();
 		int gap = 0;
 		int size2 = 0;
 		int prevNum = 0;
@@ -3017,7 +3017,7 @@ public class Arr {
 	  /**
 	   * Fills the array with sample from 0 to numArgClasses-1 without replacement.
 	   * BTO: bugfixed the case when desired samplesize > population size, but solution is undesirable (only fill the prefix).
-	   * @see sampleWithoutReplacement(int,int) for a safer alternative.
+	   * @see util.Arr.sampleWithoutReplacement(int,int) for a safer alternative.
 	   */
 	  public static void sampleWithoutReplacement(int[] array, int numArgClasses, Random rand) {
 		  int[] temp = new int[numArgClasses];
@@ -3527,10 +3527,10 @@ public class Arr {
 		  return result.toString();
 	  }
 
-	  /**
-	   * For testing only.
-	   * @param args Ignored
-	   */
+	  ///**
+	  // * For testing only.
+	  // * @param args Ignored
+	  // */
 	  //	  public static void main(String[] args) {
 	  //	    Random random = new Random();
 	  //	    int length = 100;

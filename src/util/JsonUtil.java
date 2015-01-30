@@ -2,12 +2,14 @@ package util;
 
 import java.io.IOException;
 import java.util.*;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
-import org.codehaus.jackson.node.*;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.google.common.collect.Multiset;
 
 import util.misc.Pair;
@@ -39,14 +41,6 @@ public class JsonUtil {
 	public static <T> ArrayList<T> toList(String jsonString, final Class<T> type) {
 		try {
 			return om.readValue(jsonString, TypeFactory.defaultInstance().constructCollectionType(ArrayList.class, type));
-		} catch (IOException e) {
-			return null;
-		}
-	}
-
-	public static <T> ArrayList<T> toList(JsonNode jsonNode, final Class<T> type) {
-		try {
-			return om.readValue(jsonNode, TypeFactory.defaultInstance().constructCollectionType(ArrayList.class, type));
 		} catch (IOException e) {
 			return null;
 		}

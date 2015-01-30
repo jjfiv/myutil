@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.codehaus.jackson.JsonNode;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -209,7 +209,7 @@ public class Parse {
 			else { throw new RuntimeException("wtf"); }
 
 			docid = parts.length >= 2 ? parts[0] :
-				payload !=null && payload.has("docid") ? payload.get("docid").getTextValue() :
+				payload !=null && payload.has("docid") ? payload.get("docid").asText() :
 					"doc" + numDocs;
 
 				assert docid != null : "inconsistent 'docid' key";

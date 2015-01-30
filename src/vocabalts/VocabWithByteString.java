@@ -1,6 +1,6 @@
 package vocabalts;
 
-import gnu.trove.map.hash.TObjectIntHashMap;
+import gnu.trove.TObjectIntHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenCustomHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import util.BasicFileIO;
+
+import static vocabalts.VocabWithByteString.encodeUTF8;
 
 
 /**
@@ -80,7 +82,7 @@ public class VocabWithByteString {
 	/** 
 	 *  If not locked, an unknown name is added to the vocabulary.
 	 *  If locked, return -1 on OOV.
-	 * @param featname
+	 * @param _featname
 	 * @return
 	 */
 	public int num(String _featname) {
@@ -105,7 +107,7 @@ public class VocabWithByteString {
 	}
 
 	public boolean contains(String name) {
-		return name2num.containsKey(name);
+		return name2num.containsKey(new ByteString(name));
 	}
 
 //	public String toString() {
@@ -138,7 +140,7 @@ public class VocabWithByteString {
 	    return new String(bytes, UTF8_CHARSET);
 	}
 
-	private static byte[] encodeUTF8(String string) {
+	static byte[] encodeUTF8(String string) {
 	    return string.getBytes(UTF8_CHARSET);
 	}
 
@@ -158,24 +160,28 @@ public class VocabWithByteString {
 
 class ByteString {
 	final byte[] data;
-	
-    public ByteString(byte[] data){
-        if (data == null){
-            throw new NullPointerException();
-        }
-        this.data = data;
-    }
+
+	public ByteString(String data) {
+		this(encodeUTF8(data));
+	}
+
+	public ByteString(byte[] data){
+		if (data == null){
+			throw new NullPointerException();
+		}
+		this.data = data;
+	}
 
 	@Override
 	public boolean equals(Object other){
-        if (!(other instanceof ByteString)){
-            return false;
-        }
-        return Arrays.equals(data, ((ByteString) other).data);
-    }
-	
-    @Override
-    public int hashCode(){
-        return Arrays.hashCode(data);
-    }
+		if (!(other instanceof ByteString)){
+			return false;
+		}
+		return Arrays.equals(data, ((ByteString) other).data);
+	}
+
+	@Override
+	public int hashCode(){
+		return Arrays.hashCode(data);
+	}
 }

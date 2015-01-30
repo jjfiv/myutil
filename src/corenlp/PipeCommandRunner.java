@@ -1,18 +1,14 @@
 package corenlp;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import util.Arr;
+import util.BasicFileIO;
+import util.JsonUtil;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.ByteBuffer;
-
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.map.JsonMappingException;
-
-import util.Arr;
-import util.BasicFileIO;
-import util.JsonUtil;
-import util.U;
 
 /** 
  * TWO MODES OF OPERATION:
@@ -123,7 +119,7 @@ public class PipeCommandRunner {
 
 	ServerSocket parseServer = null;
 	
-	void socketServerLoop() throws JsonGenerationException, JsonMappingException, IOException {
+	void socketServerLoop() throws IOException {
 		// declare a server socket and a client socket for the server
 		// declare an input and an output stream
 		BufferedReader br;
